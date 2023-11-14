@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <style>
+        .header{
+            height: 100px;
+            background: #a0d8ee;
+        }
+
+        .header img{
+            height: 80px;
+        }
+
+        .header ul li a {
+            font-weight: inherit;
+            font-size: medium;
+            margin-left: 10px;
+        }
+
+        .nav-link.active-cus{
+            color: red;
+        }
+
+        .nav-link.hover:hover{
+            color: red;
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+<!--                <div class="navbar-brand">-->
+<!--                    <img src="images/logo_furama.png" alt="Logo" class="d-inline-block align-text-top">-->
+<!--                </div>-->
+                <a class="navbar-brand" href="#"><img src="images/logo_furama.png" alt="Logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active-cus hover" aria-current="page" href="#">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover" href="#">FACILITIES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover" href="#">CUSTOMERS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover" href="#">CONTRACTS</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
