@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+<div class="row mt-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 border-primary">
+        <div class=" text-content">
+            <h2 class="text-primary">Update Facility</h2>
+        </div>
+        <form action="#" method="post">
+            <div class="row mb-3">
+                <label for="title" class="form-label col-sm-2">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" id="title" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="roomArea" class="form-label col-sm-2">Room area</label>
+                <div class="col-sm-10">
+                    <input type="text" id="roomArea" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="rentalCosts" class="form-label col-sm-2">Rental costs</label>
+                <div class="col-sm-10">
+                    <input type="text" id="rentalCosts" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="capacity" class="form-label col-sm-2">Capacity</label>
+                <div class="col-sm-10">
+                    <input type="number" id="capacity" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="rentalType" class="form-label col-sm-2">Rental type</label>
+                <div class="col-sm-10">
+                    <select class="form-select col-sm-10" aria-label="Default select example" name="area"
+                            id="rentalType" required>
+                        <option value="" selected>Select</option>
+                        <option>hours</option>
+                        <option>day</option>
+                        <option>month</option>
+                        <option>year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="form-label col-sm-2"></label>
+                <div class="col-sm-10">
+                    <a href="facility-list.html" role="button" class="btn btn-sm btn-secondary">Back</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+</body>
+</html>
