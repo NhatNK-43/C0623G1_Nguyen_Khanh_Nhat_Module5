@@ -56,6 +56,7 @@ class Posts extends Component {
     state = {
         posts: [...posts],
         post: {},
+        postDelete: {},
         showFormCreateAndUpdate: {
             action: "CREATE",
             showButtonSave: true,
@@ -111,7 +112,7 @@ class Posts extends Component {
         )
     }
 
-    handleGetInform = (postEdit) => {
+    handleGetInformEdit = (postEdit) => {
         this.setState(
             {
                 post: postEdit,
@@ -120,6 +121,14 @@ class Posts extends Component {
                     showButtonSave: false,
                     showButtonEdit: true,
                 }
+            }
+        )
+    }
+
+    handleGetInformDelete = (postDelete) => {
+        this.setState(
+            {
+                postDelete: postDelete
             }
         )
     }
@@ -157,6 +166,15 @@ class Posts extends Component {
         )
     }
 
+    handleDelete = () => {
+        const newPosts = this.state.posts.filter(post => post.id !== this.state.postDelete.id);
+        this.setState(
+            {
+                posts: [...newPosts]
+            }
+        )
+    }
+
     render() {
         return (
             <>
@@ -182,9 +200,11 @@ class Posts extends Component {
                                     <td>{post.updatedAt}</td>
                                     <td>
                                         <button className="btn btn-sm btn-secondary rounded-0 me-3" type="button"
-                                                onClick={() => this.handleGetInform(post)}>Edit
+                                                onClick={() => this.handleGetInformEdit(post)}>Edit
                                         </button>
-                                        <button className="btn btn-sm btn-danger rounded-0" type="button">Delete
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                className="btn btn-sm btn-danger rounded-0"
+                                                onClick={() => this.handleGetInformDelete(post)}>Delete
                                         </button>
                                     </td>
                                 </tr>
@@ -193,6 +213,34 @@ class Posts extends Component {
                         </tbody>
                     </table>
 
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content text-center">
+                                <div className="modal-header justify-content-center">
+                                    <div>
+                                        <h1 className="modal-title text-danger fs-4" id="exampleModalLabel">DELETE
+                                            POST</h1>
+                                        <h5 className="modal-title text-danger fw-bold">{this.state.postDelete.title}</h5>
+                                        {/*<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*/}
+                                    </div>
+                                </div>
+                                <div className="modal-body">
+                                    <h5>Are you sure you want to delete post?</h5>
+                                    This action cannot be undone!
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-sm btn-secondary rounded-0"
+                                            data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" className="btn btn-sm btn-danger rounded-0"
+                                            data-bs-dismiss="modal"
+                                            onClick={this.handleDelete}>Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="row p-0">
                         <div className="col-md-6">
@@ -243,6 +291,12 @@ class Posts extends Component {
                                                readOnly/>
                                     </div>
                                     {
+                                        this.state.post.title
+                                        &&
+                                        this.state.post.category
+                                        &&
+                                        this.state.post.content
+                                        &&
                                         this.state.showFormCreateAndUpdate.showButtonSave
                                         &&
                                         <div className="col-sm-12">
@@ -252,6 +306,12 @@ class Posts extends Component {
                                         </div>
                                     }
                                     {
+                                        this.state.post.title
+                                        &&
+                                        this.state.post.category
+                                        &&
+                                        this.state.post.content
+                                        &&
                                         this.state.showFormCreateAndUpdate.showButtonEdit
                                         &&
                                         <div className="col-sm-12">
