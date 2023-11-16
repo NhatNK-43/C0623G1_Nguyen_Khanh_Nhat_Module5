@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../style_css/header.css">
+</head>
+<body>
+<div class="row mt-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 border-primary">
+        <div class=" text-content">
+            <h2 class="text-primary">Update Customer</h2>
+        </div>
+        <form action="#" method="post">
+            <div class="row mb-3">
+                <label for="name" class="form-label col-sm-2">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="dateOfBirth" class="form-label col-sm-2">Date of birth</label>
+                <div class="col-sm-10">
+                    <input type="date" id="dateOfBirth" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gender" class="form-label col-sm-2">Gender</label>
+                <div class="col-sm-10">
+                    <select class="form-select col-sm-10" aria-label="Default select example" name="area"
+                            id="gender" required>
+                        <option value="" selected>Select</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="idCard" class="form-label col-sm-2">Id card</label>
+                <div class="col-sm-10">
+                    <input type="text" id="idCard" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="phoneNumber" class="form-label col-sm-2">Phone number</label>
+                <div class="col-sm-10">
+                    <input type="text" id="phoneNumber" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="email" class="form-label col-sm-2">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="customerType" class="form-label col-sm-2">Customer type</label>
+                <div class="col-sm-10">
+                    <select class="form-select col-sm-10" aria-label="Default select example" name="area"
+                            id="customerType" required>
+                        <option value="" selected>Select</option>
+                        <option>Member</option>
+                        <option>Silver</option>
+                        <option>Gold</option>
+                        <option>Platinum</option>
+                        <option>Diamond</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="address" class="form-label col-sm-2">Address</label>
+                <div class="col-sm-10">
+                    <input type="text" id="address" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="form-label col-sm-2"></label>
+                <div class="col-sm-10">
+                    <a href="customer-list.html" role="button" class="btn btn-sm btn-secondary">Back</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+</body>
+</html>
