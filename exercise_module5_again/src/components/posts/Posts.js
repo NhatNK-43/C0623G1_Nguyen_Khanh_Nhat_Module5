@@ -136,7 +136,6 @@ class Posts extends Component {
     handleEdit = () => {
         const newPosts = this.state.posts.map(post => {
             if (post.id === this.state.post.id) {
-                console.log(this.state.post);
                 this.state.post.updatedAt = new Date().toLocaleDateString();
                 return {...this.state.post};
             } else {
