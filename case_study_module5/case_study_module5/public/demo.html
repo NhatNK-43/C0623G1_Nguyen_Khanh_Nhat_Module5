@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*datalist{*/
+        /*    display: none;*/
+        /*}*/
+
+        datalist {
+            background-color: #f2f2f2;
+            color: #333333;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+            font-weight: bold;
+            /*Thêm các thuộc tính CSS khác tùy theo yêu cầu của bạn*/
+        }
+        #custom-list {
+            background-color: #f2f2f2;
+            color: #333333;
+            border: 1px solid #cccccc;
+            font-size: 14px;
+            /*Thêm các thuộc tính CSS khác tùy theo yêu cầu của bạn*/
+        }
+
+        #custom-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #custom-list ul li {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #custom-list ul li:hover {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+<!--<input list="mylist">-->
+<!--<datalist id="mylist">-->
+<!--    <option value="Option 1">-->
+<!--    <option value="Option 2">-->
+<!--    <option value="Option 3">-->
+<!--</datalist>-->
+
+<input type="text" list="custom-list">
+<div id="custom-list">
+    <ul>
+        <li>Option 1</li>
+        <li>Option 2</li>
+        <li>Option 3</li>
+    </ul>
+</div>
+</body>
+</html>
