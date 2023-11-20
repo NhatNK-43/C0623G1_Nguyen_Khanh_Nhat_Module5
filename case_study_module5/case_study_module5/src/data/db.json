@@ -557,6 +557,62 @@
         "name": "Sliver"
       },
       "id": 38
+    },
+    {
+      "name": "Nguyễn Khánh Nhật",
+      "dateOfBirth": "1998-11-01",
+      "gender": 1,
+      "idCard": "012345698712",
+      "phoneNumber": "0783495322",
+      "email": "khanh.nhat.365@gmail.com",
+      "address": "11 Quang Dũng, phường Vĩnh Trung, quận Thanh Khê",
+      "customerType": {
+        "id": 1,
+        "name": "Member"
+      },
+      "id": 39
+    },
+    {
+      "name": "Nguyễn Khánh Nhật",
+      "dateOfBirth": "1998-11-01",
+      "gender": 1,
+      "idCard": "012345698712",
+      "phoneNumber": "0783495322",
+      "email": "khanh.nhat.365@gmail.com",
+      "address": "11 Quang Dũng, phường Vĩnh Trung, quận Thanh Khê",
+      "customerType": {
+        "id": 1,
+        "name": "Member"
+      },
+      "id": 40
+    },
+    {
+      "name": "Nguyễn Khánh Nhật",
+      "dateOfBirth": "1998-11-01",
+      "gender": 1,
+      "idCard": "012345698712",
+      "phoneNumber": "0783495322",
+      "email": "khanh.nhat.365@gmail.com",
+      "address": "11 Quang Dũng, phường Vĩnh Trung, quận Thanh Khê",
+      "customerType": {
+        "id": 1,
+        "name": "Member"
+      },
+      "id": 41
+    },
+    {
+      "name": "Nguyễn Khánh Nhật",
+      "dateOfBirth": "1998-11-15",
+      "gender": "1",
+      "idCard": "849584759483",
+      "phoneNumber": "0783495322",
+      "email": "khanh.nhat.365@gmail.com",
+      "address": "11 Quang Dũng, phường Vĩnh Trung, quận Thanh Khê",
+      "customerType": {
+        "id": 1,
+        "name": "Member"
+      },
+      "id": 42
     }
   ],
   "facilityType": [
