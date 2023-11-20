@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function GreetingFunction(){
+export default function GreetingFunction() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
 
@@ -12,7 +12,7 @@ export default function GreetingFunction(){
         setLastName(e.target.value);
     }
 
-    return(
+    return (
         <div>
             <input
                 value={firstName}
@@ -27,7 +27,7 @@ export default function GreetingFunction(){
                 Hello, {" "}
                 <span>
                         {firstName} {lastName}
-                    </span>
+                </span>
             </p>
         </div>
     )
