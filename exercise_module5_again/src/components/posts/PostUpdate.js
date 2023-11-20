@@ -12,7 +12,7 @@ const categoryList = [
     "Interviews"
 ]
 
-export function PostCreate() {
+export function PostUpdate() {
     const [categories, setCategories] = useState([]);
     const [post, setPost] = useState({});
     const [slug, setSlug] = useState("");
@@ -48,13 +48,13 @@ export function PostCreate() {
         values.title = post.title;
         values.title = slug;
         values.updatedAt = new Date().toLocaleDateString();
-        const status = await postService.create(values);
+        const status = await postService.update(values);
         if(status === 201){
-            toast.success("Create successfully!");
+            toast.success("Update successfully!");
             navigate("/");
         } else {
-            toast.error("Create failed!");
-            navigate("/create");
+            toast.error("Update failed!");
+            navigate("/update");
         }
 
     }

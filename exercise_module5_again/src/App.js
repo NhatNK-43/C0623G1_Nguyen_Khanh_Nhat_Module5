@@ -4,13 +4,16 @@ import PostList from "./components/posts/PostList";
 import {Route, Routes} from "react-router-dom";
 import {PostCreate} from "./components/posts/PostCreate";
 import {ToastContainer} from "react-toastify";
+import {NotFound} from "./components/NotFound";
+import {PostUpdate} from "./components/posts/PostUpdate";
 function App() {
     return (
         <>
             <Routes>
-                <Route path="/postlist" element={<PostList/>}></Route>
+                <Route path="/" element={<PostList/>}></Route>
                 <Route path="/create" element={<PostCreate/>}></Route>
-                {/*<Route path="*" element={<Page404/>}></Route>*/}
+                <Route path="/update/:id" element={<PostUpdate/>}></Route>
+                <Route path="*" element={<NotFound/>}></Route>
             </Routes>
             <ToastContainer></ToastContainer>
         </>
