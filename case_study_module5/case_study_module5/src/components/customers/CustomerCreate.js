@@ -45,9 +45,8 @@ export function CustomerCreate() {
     }
 
     const create = async (values) => {
-        values.gender = +values.gender;
         let status = await customerService.createCustomer(values);
-        if (status === 200) {
+        if (status === 201) {
             toast.success("Create successfully!");
             navigate("/customers");
         } else {

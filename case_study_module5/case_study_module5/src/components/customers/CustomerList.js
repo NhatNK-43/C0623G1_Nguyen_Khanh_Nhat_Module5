@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import * as customerService from "../../service/customer_service";
 import * as customerTypeService from "../../service/customer_type_service";
 import {Link, NavLink} from "react-router-dom";
+import {IconButton} from "@mui/material";
+import {NavigateBefore} from "@mui/icons-material";
 // import {ModalDeleteCustomer} from "./ModalDeleteCustomer";
 
 export function CustomerList() {
@@ -9,27 +11,25 @@ export function CustomerList() {
     const [idDelete, setIdDelete] = useState();
     const [nameDelete, setNameDelete] = useState();
     const [nameSearch, setNameSearch] = useState("");
-    const [customerTypeId, setCustomerTypeId] = useState({id: 0, name: ""});
+    const [customerTypeName, setCustomerTypeName] = useState("");
     const [customerTypes, setCustomerTypes] = useState([]);
     const [totalPage, setTotalPage] = useState([]);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
 
 
     useEffect(() => {
         getAll();
         getAllCustomerType();
-    }, [nameSearch, customerTypeId, page])
+    }, [nameSearch, customerTypeName, page])
 
 
     const getAll = async () => {
-        const res = await customerService.pageCustomer(page, nameSearch, customerTypeId.id);
-        const totalP = totalPageArray(res.data.totalPages);
-        console.log(totalP);
+        const res = await customerService.getAllCustomer(page, nameSearch, customerTypeName);
+        console.log(res.headers["x-total-count"]);
+        const totalP = totalPageArray(Math.ceil(res.headers["x-total-count"]/10));
         setTotalPage(totalP);
-        setCustomers(res.data.content);
+        setCustomers(res.data);
     }
-    console.log(page)
-    console.log(totalPage)
     const getAllCustomerType = async () => {
         const data = await customerTypeService.getAllCustomerType();
         setCustomerTypes(data);
@@ -48,7 +48,7 @@ export function CustomerList() {
         setPage(0);
     }
     const handleSearchCustomerType = (event)=>{
-        setCustomerTypeId(event);
+        setCustomerTypeName(event);
         setPage(0);
     }
 
@@ -57,7 +57,7 @@ export function CustomerList() {
         setNameDelete(name);
     }
 
-    if (!customers || !customerTypes||!totalPage) {
+    if (!customers || !customerTypes) {
         return null;
     }
     return (
@@ -79,14 +79,14 @@ export function CustomerList() {
                             className="form-select-sm border-1 rounded-0"
                             aria-label="Default select example"
                             name="customerTypeId"
-                            onChange={(event)=> handleSearchCustomerType(JSON.parse(event.target.value))}
+                            onChange={(event)=> handleSearchCustomerType(event.target.value)}
                         >
-                            <option value='{"id":0,"name":""}'>All customer type</option>
+                            <option value="">All customer type</option>
                             {
                                 customerTypes.map(c => (
                                     <option
                                         key={c.id}
-                                        value={JSON.stringify(c)}
+                                        value={c.name}
                                     >{c.name}</option>
                                 ))
                             }
@@ -137,11 +137,11 @@ export function CustomerList() {
                                                 nameSearch !== "" && <span> named: <b>{nameSearch}</b></span>
                                             }
                                             {
-                                                nameSearch !== "" && customerTypeId.id !== 0 && <span> and </span>
+                                                nameSearch !== "" && customerTypeName !== "" && <span> and </span>
                                             }
                                             {
-                                                customerTypeId.id !== 0 &&
-                                                <span> type: <b>{customerTypeId.name}</b></span>
+                                                customerTypeName !== "" &&
+                                                <span> type: <b>{customerTypeName}</b></span>
                                             }
                                         </td>
                                     </tr>
@@ -153,32 +153,36 @@ export function CustomerList() {
                         <nav aria-label="Page navigation example">
                             <ul className="pagination justify-content-end">
                                 <li className="page-item">
-                                    <button className={`page-link rounded-0 ${page<=0?"disabled":""}`} aria-label="Previous" onClick={()=>setPage(0)}>
+                                    <button className={`page-link rounded-0 ${page<=1?"disabled":""}`}
+                                            aria-label="Previous" onClick={()=>setPage(1)}>
                                         <small aria-hidden="true">&lt;&lt;</small>
                                     </button>
                                 </li>
                                 <li className="page-item">
-                                    <button className={`page-link rounded-0 ${page<=0?"disabled":""}`} onClick={()=>setPage(page-1)}  aria-label="Previous">
+                                    <button className={`page-link rounded-0 ${page<=1?"disabled":""}`}
+                                            onClick={()=>setPage(page-1)}  aria-label="Previous">
                                         <span aria-hidden="true">&lt;</span>
                                     </button>
                                 </li>
                                 {
-                                    totalPage.map((item,index) =>{
+                                    totalPage.map((item) =>{
                                         return(
-                                            <li className="page-item" key={index}>
-                                                <button className={`page-link ${page===index?"active":""}`} id="page-number" onClick={()=>setPage(index)}>{index+1}</button>
+                                            <li className="page-item" key={item}>
+                                                <button className={`page-link ${page===item?"active":""}`} id="page-number"
+                                                        onClick={()=>setPage(item)}>{item}</button>
                                             </li>
                                         )
                                     })
                                 }
 
                                 <li className="page-item">
-                                    <button className={`page-link rounded-0 ${page+1>=totalPage[totalPage.length-1]||totalPage.length===0?"disabled":""}`} onClick={()=>setPage(page+1)} aria-label="Next">
+                                    <button className={`page-link rounded-0 ${page>=totalPage[totalPage.length-1]||totalPage.length===0?"disabled":""}`}
+                                            onClick={()=>setPage(page+1)} aria-label="Next">
                                         <small aria-hidden="true">&gt;</small>
                                     </button>
                                 </li>
                                 <li className="page-item">
-                                    <button className={`page-link rounded-0 ${page+1>=totalPage[totalPage.length-1]||totalPage.length===0?"disabled":""}`}
+                                    <button className={`page-link rounded-0 ${page>=totalPage[totalPage.length-1]||totalPage.length===0?"disabled":""}`}
                                             onClick={()=> setPage(totalPage[totalPage.length-1])} aria-label="Next">
                                         <small aria-hidden="true">&gt;&gt;</small>
                                     </button>
@@ -194,31 +198,6 @@ export function CustomerList() {
             {/*    idDelete={idDelete}*/}
             {/*    nameDelete={nameDelete}*/}
             {/*/>*/}
-            <div>
-                {/*<div>*/}
-                {/*    <button className="btn btn-sm btn-success" onClick={handleClick}>*/}
-                {/*        Alert*/}
-                {/*    </button>*/}
-                {/*    <SweetAlert2 {...swalProps}*/}
-                {/*                 didOpen={() => {*/}
-                {/*                     // run when swal is opened...*/}
-                {/*                 }}*/}
-                {/*                 didClose={() => {*/}
-                {/*                     // run when swal is closed...*/}
-                {/*                 }}*/}
-                {/*                 onConfirm={result => {*/}
-                {/*                     // run when clieked in confirm and promise is resolved...*/}
-                {/*                 }}*/}
-                {/*                 onError={error => {*/}
-                {/*                     // run when promise rejected...*/}
-                {/*                 }}*/}
-                {/*                 onResolve={result => {*/}
-                {/*                     // run when promise is resolved...*/}
-                {/*                 }}*/}
-                {/*    />*/}
-                {/*</div>*/}
-            </div>
-
         </>
     )
 }

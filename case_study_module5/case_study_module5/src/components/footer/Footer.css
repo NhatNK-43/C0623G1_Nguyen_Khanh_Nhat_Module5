@@ -2,6 +2,7 @@
     /*height: 270px;*/
     background: #a0d8ee;
     font-style: italic;
+    margin-top: 20px;
 }
 
 .footer-left {
@@ -12,7 +13,7 @@
 
 .footer-left span a{
     color: black;
-    padding: 20px;
+    padding-left: 20px;
 }
 
 .footer-right {
@@ -21,7 +22,7 @@
 }
 
 .footer-right span{
-    padding: 20px;
+    padding-left: 20px;
 }
 
 .footer-right span a{

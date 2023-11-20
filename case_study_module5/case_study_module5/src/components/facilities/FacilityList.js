@@ -36,12 +36,10 @@ export function FacilityList() {
                     >
                         Create facility
                     </NavLink>
-                    {/*<div className="w-75 d-flex align-items-center">*/}
                     <input className="form-control-sm rounded-0 border-1 w-25" placeholder="Search name..."
                            name="nameSearch"
                            onChange={(event) => setNameSearch(event.target.value)}
                     />
-                    {/*</div>*/}
 
                 </div>
                 <div className="row">

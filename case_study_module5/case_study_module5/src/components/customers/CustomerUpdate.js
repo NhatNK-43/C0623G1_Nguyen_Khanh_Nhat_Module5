@@ -22,7 +22,7 @@ export function CustomerUpdate() {
 
     const getCustomerById = async () => {
         let data = await customerService.getCustomerById(id);
-        data.gender = data.gender + "";
+        data.gender = "" + data.gender;
         setCustomer(data);
     }
 

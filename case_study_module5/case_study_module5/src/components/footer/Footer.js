@@ -1,25 +1,29 @@
 import "./Footer.css";
 import {FacebookOutlined, Instagram, YouTube} from '@mui/icons-material';
-import { IconButton } from "@mui/material";
+import {IconButton} from "@mui/material";
+import {NavLink} from "react-router-dom";
 
 export function Footer() {
     return (
         <>
             <div className="footer">
-                <div className="footer-top navbar">
-                    <IconButton color="primary"><FacebookOutlined/></IconButton>
-                    <IconButton color="primary"><Instagram/></IconButton>
-                    <IconButton color="primary"><YouTube/></IconButton>
+                <div className="container footer-top d-flex justify-content-end align-items-center">
+                    <a href="https://www.facebook.com/furamaresort/" target="_blank"><IconButton
+                        color="primary"><FacebookOutlined/></IconButton></a>
+                    <a href="https://www.instagram.com/furama_resort_and_villas/" target="_blank"><IconButton
+                        color="primary"><Instagram/></IconButton></a>
+                    <a href="https://www.youtube.com/user/furamaresortvietnam/featured" target="_blank"><IconButton
+                        color="primary"><YouTube/></IconButton></a>
                 </div>
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-4 footer-left">
                             <h5>CATEGORY</h5>
-                            <span><a href="#">Facilities</a></span>
+                            <span><NavLink to="/facilities">Facilities</NavLink></span>
                             <br/>
-                            <span><a href="#">Customers</a></span>
+                            <span><NavLink to="/customers">Customers</NavLink></span>
                             <br/>
-                            <span><a href="#">Contracts</a></span>
+                            <span><NavLink to="/contracts">Contracts</NavLink></span>
                         </div>
                         <div className="col-sm-8 footer-right">
                             <h5>CONTACT</h5>
