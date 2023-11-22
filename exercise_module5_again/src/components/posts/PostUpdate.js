@@ -15,13 +15,11 @@ const categoryList = [
 export function PostUpdate() {
     const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
-    const [post, setPost] = useState({});
+    const [post, setPost] = useState();
     const {id} = useParams();
-    console.log(id);
 
     useEffect(() => {
         setCategories(categoryList);
-        // getById();
     }, [])
 
     useEffect(() => {
@@ -38,11 +36,6 @@ export function PostUpdate() {
         return null;
     }
 
-    console.log(post);
-    const initValue = {
-      title: post.title
-    }
-
 
     const handleConvertSlug = (e) => {
         setPost(
@@ -55,29 +48,25 @@ export function PostUpdate() {
     }
 
     const update = async (values) => {
-        console.log(values);
-        // values.id = post.id;
-        // values.title = post.title;
-        // values.slug = post.slug;
-        // values.updatedAt = new Date().toLocaleDateString();
-        // const status = await postService.update(values);
-        // console.log(status);
-        // if(status === 200){
-        //     toast.success("Update successfully!");
-        //     navigate("/");
-        // } else {
-        //     toast.error("Update failed!");
-        //     navigate(`/update/${values.id}`);
-        // }
-
+        values.id = post.id;
+        values.title = post.title;
+        values.slug = post.slug;
+        values.updatedAt = new Date().toLocaleDateString();
+        const status = await postService.update(values);
+        if(status === 200){
+            toast.success("Update successfully!");
+            navigate("/");
+        } else {
+            toast.error("Update failed!");
+            navigate(`/update/${values.id}`);
+        }
     }
 
     return (
         <>
             <Formik
-                initialValues={initValue}
+                initialValues={post}
                 onSubmit={values => {
-                    // console.log(values);
                     update(values);
                 }}
             >
@@ -95,8 +84,8 @@ export function PostUpdate() {
                                     </div>
                                     <div className="col-sm-9">
                                         <Field className="form-control" id="title" name="title"
-                                               // value={post.title}
-                                               // onChange={handleConvertSlug}
+                                               value={post.title}
+                                               onChange={handleConvertSlug}
                                         />
                                     </div>
                                     <div className="col-sm-3">
@@ -122,7 +111,7 @@ export function PostUpdate() {
                                     </div>
                                     <div className="col-sm-9">
                                         <input className="form-control" id="slug" name="slug"
-                                               // value={post.slug}
+                                               value={post.slug}
                                                readOnly/>
                                     </div>
                                     <div className="col-sm-12">

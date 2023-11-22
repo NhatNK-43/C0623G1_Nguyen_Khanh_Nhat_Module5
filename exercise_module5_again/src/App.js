@@ -7,11 +7,15 @@ import {ToastContainer} from "react-toastify";
 import {NotFound} from "./components/NotFound";
 import {PostUpdate} from "./components/posts/PostUpdate";
 import {PostDetail} from "./components/posts/PostDetail";
+import {PostsCallAPI} from "./components/posts_call_api/PostsCallAPI";
+import {PostCallAPICreate} from "./components/posts_call_api/PostCallAPICreate";
 function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<PostList/>}></Route>
+                <Route path="/" element={<PostsCallAPI/>}></Route>
+                <Route path="/create-post-call-api" element={<PostCallAPICreate/>}></Route>
+                <Route path="/posts" element={<PostList/>}></Route>
                 <Route path="/create" element={<PostCreate/>}></Route>
                 <Route path="/update/:id" element={<PostUpdate/>}></Route>
                 <Route path="/detail/:id" element={<PostDetail/>}></Route>

@@ -3,6 +3,7 @@ import {Formik, Form, Field, ErrorMessage} from "formik";
 import {NavLink, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import * as postService from "../../service/post_service";
+import * as Yup from "yup"
 
 const categoryList = [
     "Crypto News",
@@ -14,7 +15,7 @@ const categoryList = [
 
 export function PostCreate() {
     const [categories, setCategories] = useState([]);
-    const [post, setPost] = useState({});
+    const [slug, setSlug] = useState('');
 
     const navigate = useNavigate();
 
@@ -23,7 +24,6 @@ export function PostCreate() {
     }, [])
 
     const initValue = {
-        // id: "",
         title: "",
         category: "",
         content: "",
@@ -31,21 +31,17 @@ export function PostCreate() {
         slug: ""
     }
 
-    const handleConvertSlug = (e) => {
-        setPost(
-            (prevState)=>{
-                return {
-                    ...prevState,
-                    title: e.target.value,
-                    slug: e.target.value.trim().toLocaleLowerCase().replaceAll(" ", "-")
-                }
-            }
-        )
+    const validateObject = {
+        title: Yup.string()
+            .required("Please enter a title"),
+        category: Yup.string()
+            .required("Please select a category"),
+        content: Yup.string()
+            .required("Please enter a content")
     }
 
     const create = async (values) => {
-        values.title = post.title;
-        values.slug = post.slug;
+        values.slug = slug;
         values.updatedAt = new Date().toLocaleDateString();
         const status = await postService.create(values);
         if(status === 201){
@@ -61,11 +57,13 @@ export function PostCreate() {
     return (
         <>
             <Formik
+                enableReinitialize={true}
                 initialValues={initValue}
                 onSubmit={(values) => {
                     create(values);
-                }
-            }>
+                }}
+                validationSchema={Yup.object(validateObject)}
+            >
                 <Form>
                     <div className="row p-0 justify-content-center mt-5">
                         <div className="col-md-6">
@@ -78,8 +76,10 @@ export function PostCreate() {
                                         <label className="form-label" htmlFor="title">Title</label>
                                     </div>
                                     <div className="col-sm-9">
-                                        <Field className="form-control" id="title" name="title" value={post.title}
-                                               onChange={handleConvertSlug}/>
+                                        <Field className="form-control" id="title" name="title"
+                                            onKeyUp={(e)=> setSlug(e.target.value.trim().toLocaleLowerCase().replaceAll(" ", "-"))}
+                                        />
+                                        <ErrorMessage name="title" component="small" className="text-danger"/>
                                     </div>
                                     <div className="col-sm-3">
                                         <label className="form-label" htmlFor="category">Category</label>
@@ -93,19 +93,21 @@ export function PostCreate() {
                                                 ))
                                             }
                                         </Field>
+                                        <ErrorMessage name="category" component="small" className="text-danger"/>
                                     </div>
                                     <div className="col-sm-3">
                                         <label className="form-label" htmlFor="content">Content</label>
                                     </div>
                                     <div className="col-sm-9">
                                         <Field as="textarea" className="form-control" id="content" name="content"/>
+                                        <ErrorMessage name="content" component="small" className="text-danger"/>
                                     </div>
                                     <div className="col-sm-3">
                                         <label className="form-label" htmlFor="slug">Slug</label>
                                     </div>
                                     <div className="col-sm-9">
                                         <input className="form-control" id="slug" name="slug"
-                                               value={post.slug}
+                                               value={slug}
                                                readOnly/>
                                     </div>
                                     <div className="col-sm-12">
