@@ -6,6 +6,7 @@ import {PostCreate} from "./components/posts/PostCreate";
 import {ToastContainer} from "react-toastify";
 import {NotFound} from "./components/NotFound";
 import {PostUpdate} from "./components/posts/PostUpdate";
+import {PostDetail} from "./components/posts/PostDetail";
 function App() {
     return (
         <>
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/" element={<PostList/>}></Route>
                 <Route path="/create" element={<PostCreate/>}></Route>
                 <Route path="/update/:id" element={<PostUpdate/>}></Route>
+                <Route path="/detail/:id" element={<PostDetail/>}></Route>
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
             <ToastContainer></ToastContainer>

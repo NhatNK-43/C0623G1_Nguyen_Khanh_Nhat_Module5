@@ -15,7 +15,6 @@ const categoryList = [
 export function PostCreate() {
     const [categories, setCategories] = useState([]);
     const [post, setPost] = useState({});
-    const [slug, setSlug] = useState("");
 
     const navigate = useNavigate();
 
@@ -37,16 +36,16 @@ export function PostCreate() {
             (prevState)=>{
                 return {
                     ...prevState,
-                    title: e.target.value
+                    title: e.target.value,
+                    slug: e.target.value.trim().toLocaleLowerCase().replaceAll(" ", "-")
                 }
             }
         )
-        setSlug(e.target.value.trim().toLocaleLowerCase().replaceAll(" ", "-"))
     }
 
     const create = async (values) => {
         values.title = post.title;
-        values.title = slug;
+        values.slug = post.slug;
         values.updatedAt = new Date().toLocaleDateString();
         const status = await postService.create(values);
         if(status === 201){
@@ -106,7 +105,7 @@ export function PostCreate() {
                                     </div>
                                     <div className="col-sm-9">
                                         <input className="form-control" id="slug" name="slug"
-                                               value={slug}
+                                               value={post.slug}
                                                readOnly/>
                                     </div>
                                     <div className="col-sm-12">

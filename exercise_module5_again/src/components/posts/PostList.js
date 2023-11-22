@@ -1,13 +1,11 @@
 import {useEffect, useState} from "react";
-import {NavLink, useNavigate, useParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import * as postService from "../../service/post_service";
 import {toast} from "react-toastify";
+
 function Posts() {
     const [posts, setPosts] = useState([]);
-    const [idDelete, setIdDelete] = useState({});
-    // const id = useParams();
-
-    const navigate = useNavigate();
+    const [postDelete, setPostDelete] = useState({});
 
     useEffect(() => {
         getAll();
@@ -19,30 +17,20 @@ function Posts() {
         setPosts(data);
     }
 
-    // const getPostById = async () => {
-    //     const data =  await postService.getPostById(idDelete.id)
-    //     return data.id;
-    // }
-    const handleGetInformDelete = (idDelete) => {
-        setIdDelete(idDelete);
+    const handleGetInformDelete = (postDelete) => {
+        setPostDelete(postDelete);
     }
 
-    console.log(idDelete);
     const handleDelete = async () => {
-        console.log(idDelete.id)
-        const res = await postService.deletePost(6);
-        console.log(res);
-        // if(status===200){
-        //     toast.success("Delete successfully!");
-        //
-        // } else {
-        //     toast.error("Delete Failed!");
-        // }
-        // navigate("/");
-    }
-
-    const handleGetInformEdit = (post) => {
-
+        console.log(postDelete)
+        const status = await postService.deletePost(postDelete.id);
+        console.log(status);
+        if (status === 200) {
+            getAll();
+            toast.success("Delete successfully!");
+        } else {
+            toast.error("Delete Failed!");
+        }
     }
 
     return (
@@ -67,16 +55,16 @@ function Posts() {
                         posts.map((post, index) => (
                             <tr key={post.id}>
                                 <td>{index + 1}</td>
-                                <td className="text-primary">{post.title}</td>
+                                <td className="text-primary"><NavLink to={`/detail/${post.id}`}>{post.title}</NavLink></td>
                                 <td>{post.category}</td>
                                 <td>{post.updatedAt}</td>
                                 <td>
-                                    <button className="btn btn-sm btn-secondary rounded-0 me-3" type="button"
-                                            onClick={() => handleGetInformEdit(post)}>Edit
-                                    </button>
+                                    <NavLink className="btn btn-sm btn-secondary rounded-0 me-3" type="button"
+                                             to={`/update/${post.id}`}>Edit
+                                    </NavLink>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             className="btn btn-sm btn-danger rounded-0"
-                                            onClick={() => handleGetInformDelete(post.id)}>Delete
+                                            onClick={() => handleGetInformDelete(post)}>Delete
                                     </button>
                                 </td>
                             </tr>
@@ -93,7 +81,7 @@ function Posts() {
                                 <div>
                                     <h1 className="modal-title text-danger fs-4" id="exampleModalLabel">DELETE
                                         POST</h1>
-                                    <h5 className="modal-title text-danger fw-bold">{idDelete.title}</h5>
+                                    <h5 className="modal-title text-danger fw-bold">{postDelete.title}</h5>
                                 </div>
                             </div>
                             <div className="modal-body">
@@ -116,5 +104,4 @@ function Posts() {
         </>
     )
 }
-
 export default Posts;
