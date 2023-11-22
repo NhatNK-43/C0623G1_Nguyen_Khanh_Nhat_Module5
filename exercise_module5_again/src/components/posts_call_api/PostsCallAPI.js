@@ -15,7 +15,7 @@ export function PostsCallAPI() {
         <>
             <div className="container mt-5">
                 <h1 className="text-center mb-4 fw-bold">LIST POSTS</h1>
-                <NavLink role="button" className="btn btn-sm btn-primary rounded-0 mb-3" to="/create-post-call-api">Add post</NavLink>
+                <NavLink role="button" className="btn btn-sm btn-primary rounded-0 mb-3" to="/create-post-call-api">Create</NavLink>
                 <table className="table table-hover table-bordered">
                 <thead className="table-danger">
                 <tr>
