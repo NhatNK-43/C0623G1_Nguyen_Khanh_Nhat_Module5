@@ -679,10 +679,16 @@
       },
       "accompaniedServices": [
         {
-          "id": 2,
-          "name": "Karaoke",
-          "unit": "Hours",
-          "price": 300000
+          "id": 4,
+          "name": "Drinks",
+          "unit": "Portion",
+          "price": 50000
+        },
+        {
+          "id": 3,
+          "name": "Food",
+          "unit": "Portion",
+          "price": 150000
         }
       ]
     },
@@ -755,6 +761,12 @@
           "name": "Karaoke",
           "unit": "Hours",
           "price": 300000
+        },
+        {
+          "id": 3,
+          "name": "Food",
+          "unit": "Portion",
+          "price": 150000
         }
       ]
     },

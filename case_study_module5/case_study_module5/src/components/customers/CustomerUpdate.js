@@ -1,5 +1,5 @@
-import * as customerService from "../../service/customer_service"
-import * as customerTypeService from "../../service/customer_type_service"
+import * as customerService from "../../services/customerService"
+import * as customerTypeService from "../../services/customer_type_service"
 import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import {toast} from "react-toastify";

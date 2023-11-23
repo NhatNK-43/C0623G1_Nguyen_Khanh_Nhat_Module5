@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import * as facilityService from "../../service/facility_service"
+import * as facilityService from "../../services/facilityService"
 import {NavLink} from "react-router-dom";
 // import {ModalDeleteFacility} from "./ModalDeleteFacility";
 

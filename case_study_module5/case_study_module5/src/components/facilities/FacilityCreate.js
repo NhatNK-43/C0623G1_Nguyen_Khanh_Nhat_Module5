@@ -1,6 +1,6 @@
-import * as facilityTypeService from "../../service/facility_type_service";
-import * as accompaniedServiceService from "../../service/accompanied_service_service";
-import * as facilityService from "../../service/facility_service";
+import * as facilityTypeService from "../../services/facilityTypeService";
+import * as accompaniedServiceService from "../../services/accompaniedServiceService";
+import * as facilityService from "../../services/facilityService";
 import {NavLink, useNavigate} from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import {toast} from "react-toastify";

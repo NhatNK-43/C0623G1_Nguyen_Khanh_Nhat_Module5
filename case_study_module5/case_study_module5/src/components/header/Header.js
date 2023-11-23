@@ -17,13 +17,13 @@ export function Header(){
                                     <NavLink to="/" className="nav-link active-cus hover" aria-current="page">HOME</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to="/facilities" className="nav-link hover" href="#">FACILITIES</NavLink>
+                                    <NavLink to="/facilities" className="nav-link hover">FACILITIES</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to="/customers" className="nav-link hover" href="#">CUSTOMERS</NavLink>
+                                    <NavLink to="/customers" className="nav-link hover">CUSTOMERS</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to="/" className="nav-link hover" href="#">CONTRACTS</NavLink>
+                                    <NavLink to="/contracts" className="nav-link hover">CONTRACTS</NavLink>
                                 </li>
                             </ul>
                         </div>

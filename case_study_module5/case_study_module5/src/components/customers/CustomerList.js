@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import * as customerService from "../../service/customer_service";
-import * as customerTypeService from "../../service/customer_type_service";
+import * as customerService from "../../services/customerService";
+import * as customerTypeService from "../../services/customer_type_service";
 import {Link, NavLink} from "react-router-dom";
 import {IconButton} from "@mui/material";
 import {NavigateBefore} from "@mui/icons-material";

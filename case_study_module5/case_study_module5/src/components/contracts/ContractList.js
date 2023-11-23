@@ -1,33 +1,51 @@
+import {useEffect, useState} from "react";
+import * as contractService from "../../services/contractService"
+import {NavLink} from "react-router-dom";
 export function ContractList() {
+    const [contracts, setContracts] = useState([]);
+
+    useEffect(() => {
+        getAll();
+    }, []);
+
+    const getAll = async ()=>{
+        const data =await contractService.getAllContract();
+        setContracts(data);
+    }
+
     return (
         <>
             <div className="container">
-                <table className="table table-hover mt-5">
+                <NavLink
+                    to="/contracts/create"
+                    className="btn btn-sm btn-primary rounded-0 mt-3"
+                >
+                    Create contract
+                </NavLink>
+                <table className="table table-hover mt-3 shadow-lg">
                     <thead className="table-primary">
                     <tr>
-                        <th>#</th>
+                        <th>No.</th>
                         <th>Contract code</th>
-                        <th>Customer</th>
-                        <th>Facility</th>
                         <th>Start date</th>
                         <th>End date</th>
-                        <th>Price</th>
                         <th>Total Payment</th>
                         <th>Deposit</th>
                     </tr>
                     </thead>
-                    <tbody className="table-warning">
-                    <tr>
-                        <td>1</td>
-                        <td>CC-0001</td>
-                        <td>Nguyễn Khánh Nhật</td>
-                        <td>Villa</td>
-                        <td>06/11/2023</td>
-                        <td>08/11/2023</td>
-                        <td>5000000</td>
-                        <td>15000000</td>
-                        <td>1000000</td>
-                    </tr>
+                    <tbody className="table-light">
+                    {
+                        contracts.map((contrat, index)=>(
+                            <tr key={contrat.id}>
+                                <td>{index+1}</td>
+                                <td>{contrat.contractCode}</td>
+                                <td>{contrat.startDate}</td>
+                                <td>{contrat.endDate}</td>
+                                <td>{contrat.totalPayment}</td>
+                                <td>{contrat.deposit}</td>
+                            </tr>
+                        ))
+                    }
                     </tbody>
                 </table>
             </div>
