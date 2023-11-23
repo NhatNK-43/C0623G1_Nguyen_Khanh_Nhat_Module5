@@ -1,12 +1,15 @@
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import {useEffect, useState} from "react";
-import * as postCallAPIService from "../../service/post_call_api_service"
+import * as postCallAPIService from "../../services/post_call_api_service"
 import {toast} from "react-toastify";
 import {NavLink, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {createPostApi} from "../../reduxs/middlewares/postThunkMiddleware";
 
 export function PostCallAPICreate() {
     const navigate = useNavigate();
-    const [slug, setSlug] = useState("")
+    const [slug, setSlug] = useState("");
+    const dispatch = useDispatch();
 
     const initValue = {
         title: "",
@@ -15,9 +18,23 @@ export function PostCallAPICreate() {
         thumbnail_url: ""
     }
 
+
+//KHONG SU DUNG REDUX
+//     const create = async (values) => {
+//         values.slug = slug;
+//         const status = await postCallAPIService.create(values);
+//         if (status === 201) {
+//             toast.success("Create successfully!");
+//             navigate("/");
+//         } else {
+//             toast.error("Create failed!");
+//         }
+//     }
+
+    //SU DUNG REDUX
     const create = async (values) => {
         values.slug = slug;
-        const status = await postCallAPIService.create(values);
+        const status = await dispatch(createPostApi(values));
         if (status === 201) {
             toast.success("Create successfully!");
             navigate("/");

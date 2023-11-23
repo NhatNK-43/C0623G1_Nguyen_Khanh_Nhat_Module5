@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import {NavLink, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
-import * as postService from "../../service/post_service";
+import * as postService from "../../services/post_service";
 import * as Yup from "yup"
 
 const categoryList = [

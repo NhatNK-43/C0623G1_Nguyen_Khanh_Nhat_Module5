@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
-import * as postService from "../../service/post_service";
+import * as postService from "../../services/post_service";
 
 export function PostDetail() {
     const [post, setPost] = useState({});
