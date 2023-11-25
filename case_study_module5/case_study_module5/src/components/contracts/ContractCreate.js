@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import * as contractService from "../../services/contractService";
 import * as customerService from "../../services/customerService";
 import * as facilityService from "../../services/facilityService";
+import * as Yup from "yup"
 import {toast} from "react-toastify";
 
 export function ContractCreate() {
@@ -40,6 +41,24 @@ export function ContractCreate() {
         deposit: 0
     }
 
+    const validateObject = {
+        contractCode: Yup.string()
+            .required("Please enter a contract code")
+            .matches(/HD-[0-9]{4}/, "The contract code entered is invalid"),
+        customer: Yup.string()
+            .required("Please enter a customer name"),
+        facility: Yup.string()
+            .required("Please select a facility name"),
+        startDate: Yup.date()
+            .required("Please enter a facility name")
+            .min(new Date(), "The start date must be greater than or equal to the current date"),
+        endDate: Yup.date()
+            .required("Please enter a facility name")
+            .min(new Date(), "The start date must be greater than or equal to the start date"),
+        deposit: Yup.number()
+            .min(0, "The deposit must be greater than or equal 0")
+    }
+
     const create = async (values) => {
         const status = await contractService.create(values)
         if (status === 201) {
@@ -63,23 +82,23 @@ export function ContractCreate() {
                         onSubmit={values => {
                             create(values);
                         }}
-
+                        validationSchema={Yup.object(validateObject)}
                     >
                         <Form>
                             <div className="row mb-3">
                                 <label htmlFor="name" className="form-label col-sm-2">Contract code</label>
                                 <div className="col-sm-10">
-                                    <input type="text" id="name" className="form-control" required/>
+                                    <Field type="text" id="name" className="form-control" required/>
                                 </div>
                             </div>
                             <div className="row mb-3">
                                 <label htmlFor="customer" className="form-label col-sm-2">Customer</label>
                                 <div className="col-sm-10">
-                                    <input type="text" id="customer" className="form-control" required
-                                            list="datalistCustomers"/>
+                                    <Field type="text" id="customer" className="form-control"/>
                                     <datalist id="datalistCustomers">
+                                        <option value=""></option>
                                         {
-                                            customers.map(customer=>(
+                                            customers.map(customer => (
                                                 <option key={customer.id} value={JSON.stringify(customer)}>
                                                     {customer.name}
                                                 </option>
@@ -92,45 +111,43 @@ export function ContractCreate() {
                             <div className="row mb-3">
                                 <label htmlFor="facility" className="form-label col-sm-2">Facility</label>
                                 <div className="col-sm-10">
-                                    <input type="text" id="facility" className="form-control" required
-                                    list="datalistFacilities"/>
-                                    <datalist>
-                                        {
-                                            facilities.map(facility=>(
-                                                <option key={facility.id} value={JSON.stringify(facility)}>
-                                                    {facility.name}
-                                                </option>
-                                            ))
-                                        }
-                                    </datalist>
+                                    <Field as="select" id="facility" className="form-control"/>
+                                    <option value="">Select</option>
+                                    {
+                                        facilities.map(facility => (
+                                            <option key={facility.id} value={JSON.stringify(facility)}>
+                                                {facility.name}
+                                            </option>
+                                        ))
+                                    }
                                 </div>
                             </div>
 
                             <div className="row mb-3">
                                 <label htmlFor="startDate" className="form-label col-sm-2">Start date</label>
                                 <div className="col-sm-10">
-                                    <input type="date" id="startDate" className="form-control" required/>
+                                    <Field type="date" id="startDate" className="form-control" required/>
                                 </div>
                             </div>
 
                             <div className="row mb-3">
                                 <label htmlFor="endDate" className="form-label col-sm-2">End date</label>
                                 <div className="col-sm-10">
-                                    <input type="date" id="endDate" className="form-control" required/>
+                                    <Field type="date" id="endDate" className="form-control" required/>
                                 </div>
                             </div>
 
                             <div className="row mb-3">
                                 <label htmlFor="totalPayment" className="form-label col-sm-2">Total payment</label>
                                 <div className="col-sm-10">
-                                    <input type="number" id="totalPayment" className="form-control" required/>
+                                    <Field type="number" id="totalPayment" className="form-control" required/>
                                 </div>
                             </div>
 
                             <div className="row mb-3">
                                 <label htmlFor="deposit" className="form-label col-sm-2">Deposit</label>
                                 <div className="col-sm-10">
-                                    <input type="number" id="deposit" className="form-control" required/>
+                                    <Field type="number" id="deposit" className="form-control" required/>
                                 </div>
                             </div>
 
