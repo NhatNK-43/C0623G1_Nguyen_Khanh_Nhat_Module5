@@ -2,9 +2,7 @@ import {useEffect, useState} from "react";
 import * as customerService from "../../services/customerService";
 import * as customerTypeService from "../../services/customer_type_service";
 import {Link, NavLink} from "react-router-dom";
-import {IconButton} from "@mui/material";
-import {NavigateBefore} from "@mui/icons-material";
-// import {ModalDeleteCustomer} from "./ModalDeleteCustomer";
+import {ModalDeleteCustomer} from "./ModalDeleteCustomer";
 
 export function CustomerList() {
     const [customers, setCustomers] = useState([]);
@@ -193,11 +191,11 @@ export function CustomerList() {
                 </div>
             </div>
 
-            {/*<ModalDeleteCustomer*/}
-            {/*    setCustomers={setCustomers}*/}
-            {/*    idDelete={idDelete}*/}
-            {/*    nameDelete={nameDelete}*/}
-            {/*/>*/}
+            <ModalDeleteCustomer
+                setCustomers={setCustomers}
+                idDelete={idDelete}
+                nameDelete={nameDelete}
+            />
         </>
     )
 }

@@ -8,3 +8,12 @@ export const getAllContract = async () => {
         console.log("Error");
     }
 }
+
+export const create = async (contract) => {
+    try {
+        const res = await axios.post(URL_CONTRACT, contract);
+        return res.status;
+    }catch (e) {
+        console.log("Error")
+    }
+}

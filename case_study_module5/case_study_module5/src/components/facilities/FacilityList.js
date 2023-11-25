@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import * as facilityService from "../../services/facilityService"
 import {NavLink} from "react-router-dom";
-// import {ModalDeleteFacility} from "./ModalDeleteFacility";
+import {ModalDeleteFacility} from "./ModalDeleteFacility";
 
 export function FacilityList() {
     const [facilities, setFacilities] = useState([]);
@@ -72,11 +72,11 @@ export function FacilityList() {
                 </div>
 
             </div>
-            {/*<ModalDeleteFacility*/}
-            {/*    setFacilities={setFacilities}*/}
-            {/*    idDelete={idDelete}*/}
-            {/*    nameDelete={nameDelete}*/}
-            {/*/>*/}
+            <ModalDeleteFacility
+                setFacilities={setFacilities}
+                idDelete={idDelete}
+                nameDelete={nameDelete}
+            />
         </>
     )
 }

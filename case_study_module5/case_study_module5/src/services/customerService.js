@@ -14,6 +14,15 @@ const ULR_CUSTOMER = "http://localhost:8080/customers";
 //     }
 // }
 
+export const getAll = async () =>{
+    try {
+        const res = await axios.get(ULR_CUSTOMER);
+        return res.data;
+    } catch (e){
+        alert("Error!")
+    }
+}
+
 export const getAllCustomer = async (page, name, customerTypeName) =>{
     try {
         const res = await axios.get(ULR_CUSTOMER+`?_page=${page}&name_like=${name}&customerType.name_like=${customerTypeName}`);

@@ -1,11 +1,22 @@
 import axios from "axios";
 const URL_FACILITY = "http://localhost:8080/facilities";
+
+export const getAll = async () => {
+    try {
+        let res = await axios.get(URL_FACILITY);
+        return res.data;
+    } catch (e){
+        console.log("Error!")
+    }
+}
+
+
 export const getAllFacility = async (name) => {
     try {
         let res = await axios.get(URL_FACILITY+`?name_like=${name}`);
         return res.data;
     } catch (e){
-        alert("Error!")
+        console.log("Error!")
     }
 }
 
